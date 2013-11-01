@@ -3,7 +3,7 @@ package Model.item.Equipment.protection.armor;
 public class UltraArmor extends Armor {
 
 	public UltraArmor() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stu
 	}
 
 	@Override
