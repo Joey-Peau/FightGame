@@ -8,6 +8,8 @@ package Model.item;
  */
 public abstract class Item {
 
+	public Item(){}
+
 	/**
 	 * Getter for the probability the Merchant sells That Item in function of
 	 * Level
@@ -37,6 +39,7 @@ public abstract class Item {
 	 * 
 	 * @return the Item's Name
 	 */
+	@Override
 	public abstract String toString();
 
 }

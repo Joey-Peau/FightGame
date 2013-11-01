@@ -1,6 +1,5 @@
 package Model.item.Equipment.weapons;
 
-import Model.item.Item;
 import Model.item.Equipment.Equipment;
 
 /**
@@ -10,6 +9,10 @@ import Model.item.Equipment.Equipment;
  * 
  */
 public abstract class Weapons extends Equipment {
+
+	public Weapons() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * give the base attack of the weapon

@@ -1,10 +1,7 @@
-import Model.Characters.player.Player;
-import Model.Characters.player.Bag.BagException;
-import Model.Merchant.Marchand;
-import Model.item.Item;
-import Model.item.Equipment.weapons.OneHand.BaseOneHand;
-import Model.item.Equipment.weapons.Shield.BaseShield;
-import Model.item.Equipment.weapons.TwoHand.BaseTwoHand;
+import java.util.Random;
+
+import Model.Characters.enemy.Warrior;
+
 
 public class Principale {
 
@@ -13,15 +10,10 @@ public class Principale {
 	 */
 	public static void main(String[] args) {
 
-		Marchand m = new Marchand();
+		Random r = new Random();
 
-		Player p = new Player("Merlin");
 
-		System.out.println(p);
-
-		System.out.println();
-
-		System.out.println(p.getBag());
+		System.out.println(new Warrior(100).itemLoot());
 
 	}
 

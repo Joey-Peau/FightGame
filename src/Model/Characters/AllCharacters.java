@@ -45,6 +45,10 @@ public abstract class AllCharacters {
 	 *            level of character
 	 */
 	public AllCharacters(int l) {
+		if(l<0){
+			new CharactersException("Negative");
+			level =1;
+		}else
 		level = l;
 
 	}

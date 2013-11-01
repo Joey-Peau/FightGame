@@ -10,6 +10,10 @@ import Model.item.Item;
  */
 public abstract class Equipment extends Item {
 
+	public Equipment(){
+
+	}
+
 	private boolean carried;
 
 	public boolean isCarried() {

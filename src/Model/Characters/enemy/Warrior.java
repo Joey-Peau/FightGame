@@ -1,6 +1,5 @@
 package Model.Characters.enemy;
 
-import Model.Characters.AllCharacters;
 
 /**
  * Warrior enemy Class
@@ -8,7 +7,7 @@ import Model.Characters.AllCharacters;
  * @author joey
  * 
  */
-public class Warrior extends AllCharacters {
+public class Warrior extends Enemy {
 
 	/**
 	 * Initialize the Warrior

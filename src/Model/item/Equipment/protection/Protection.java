@@ -10,6 +10,10 @@ import Model.item.Equipment.Equipment;
  */
 public abstract class Protection extends Equipment {
 
+	public Protection() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public abstract int getMagicReduction();
 
 	public abstract int getWeaponReduction();
