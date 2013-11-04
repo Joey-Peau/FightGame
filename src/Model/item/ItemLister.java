@@ -135,5 +135,4 @@ public class ItemLister {
 		// ItemLister.listPotions setter with listPotions parameter
 		ItemLister.listPotions = listPotions;
 	}
-
 }
