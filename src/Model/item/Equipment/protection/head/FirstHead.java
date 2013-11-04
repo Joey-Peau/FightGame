@@ -8,12 +8,8 @@ package Model.item.Equipment.protection.head;
  */
 public class FirstHead extends Head {
 
-	public FirstHead() {
-
-	}
-
+	@Override
 	public String toString() {
 		return "First Head";
 	}
-
 }

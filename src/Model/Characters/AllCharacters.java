@@ -1,6 +1,6 @@
 package Model.Characters;
 
-import Model.Characters.player.Hands.Hands;
+import Model.Characters.Hands.Hands;
 import Model.item.Equipment.protection.armor.Armor;
 import Model.item.Equipment.protection.armor.FirstArmor;
 import Model.item.Equipment.protection.head.FirstHead;
@@ -49,7 +49,7 @@ public abstract class AllCharacters {
 			new CharactersException("Negative");
 			level =1;
 		}else
-		level = l;
+			level = l;
 
 	}
 
@@ -140,6 +140,8 @@ public abstract class AllCharacters {
 
 	/**
 	 * Print method for character
+	 * TODO : set the name
 	 */
+	@Override
 	public abstract String toString();
 }

@@ -10,8 +10,4 @@ import Model.item.Equipment.protection.Protection;
  */
 public abstract class Head extends Protection {
 
-	public Head() {
-		// TODO Auto-generated constructor stub
-	}
-
 }

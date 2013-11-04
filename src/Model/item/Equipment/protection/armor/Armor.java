@@ -10,8 +10,4 @@ import Model.item.Equipment.protection.Protection;
  */
 public abstract class Armor extends Protection {
 
-	public Armor() {
-		// TODO Auto-generated constructor stub
-	}
-
 }

@@ -8,13 +8,7 @@ package Model.item.Equipment.protection.legs;
  */
 public class FirstLegs extends Legs {
 
-	/**
-	 * Empty constructor
-	 */
-	public FirstLegs() {
-
-	}
-
+	@Override
 	public String toString() {
 		return "First Legs";
 	}

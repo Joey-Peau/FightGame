@@ -2,10 +2,6 @@ package Model.Characters.player;
 
 import Model.Characters.AllCharacters;
 import Model.Characters.player.Bag.Bag;
-import Model.item.Equipment.Equipment;
-import Model.item.Equipment.protection.armor.*;
-import Model.item.Equipment.protection.head.*;
-import Model.item.Equipment.protection.legs.*;
 
 /**
  * Player Class
@@ -53,6 +49,7 @@ public class Player extends AllCharacters {
 		return name;
 	}
 
+	@Override
 	public String toString() {
 		return getName() + "\n" + getHands();
 	}
@@ -75,8 +72,10 @@ public class Player extends AllCharacters {
 	 */
 	public void addEXP(int e) {
 		exp += e;
-		if (nextLevel() <= 0)
+		while (nextLevel() <= 0){
 			addLevel();
+			setNextExp();
+		}
 	}
 
 	/**
@@ -93,6 +92,10 @@ public class Player extends AllCharacters {
 	 */
 	public void addLevel() {
 		level++;
+	}
+
+	public void setNextExp(){
+		//TODO : next level algorithm in function of the current level
 	}
 
 }

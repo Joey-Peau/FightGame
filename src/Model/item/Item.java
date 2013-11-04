@@ -1,10 +1,11 @@
 package Model.item;
 
 /**
- * Item Abstract Class
+ * 
+ * Item abstract class
  * 
  * @author joey
- * 
+ *
  */
 public abstract class Item {
 
@@ -38,8 +39,12 @@ public abstract class Item {
 	 * Item's name getter
 	 * 
 	 * @return the Item's Name
+	 * 
+	 * TODO : set the Name
 	 */
 	@Override
 	public abstract String toString();
+
+
 
 }

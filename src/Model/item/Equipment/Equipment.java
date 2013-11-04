@@ -16,12 +16,22 @@ public abstract class Equipment extends Item {
 
 	private boolean carried;
 
+	/**
+	 * get the carried field of boolean type
+	 * @return the carried - boolean
+	 */
 	public boolean isCarried() {
+		// carried getter
 		return carried;
 	}
 
-	public void setCarried(boolean a) {
-		carried = a;
+	/**
+	 * Setter for carried field with carried parameters
+	 * @param carried the carried to set
+	 */
+	public void setCarried(boolean carried) {
+		// this.carried setter with carried parameter
+		this.carried = carried;
 	}
 
 }

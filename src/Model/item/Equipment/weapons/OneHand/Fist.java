@@ -2,10 +2,7 @@ package Model.item.Equipment.weapons.OneHand;
 
 public class Fist extends OneHand {
 
-	public Fist() {
-
-	}
-
+	@Override
 	public String toString() {
 		return "Fist";
 	}

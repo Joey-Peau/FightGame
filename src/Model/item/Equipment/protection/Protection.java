@@ -10,12 +10,18 @@ import Model.item.Equipment.Equipment;
  */
 public abstract class Protection extends Equipment {
 
-	public Protection() {
-		// TODO Auto-generated constructor stub
-	}
-
+	/**
+	 * 
+	 * TODO complete this Javadoc or delete this sentence
+	 * @return
+	 */
 	public abstract int getMagicReduction();
 
+	/**
+	 * 
+	 * TODO complete this Javadoc or delete this sentence
+	 * @return
+	 */
 	public abstract int getWeaponReduction();
 
 }
