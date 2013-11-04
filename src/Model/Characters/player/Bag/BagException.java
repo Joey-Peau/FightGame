@@ -13,5 +13,7 @@ public class BagException extends Exception {
 			System.out.println("Le sac est deja plein");
 		if (n.compareTo("Carried") == 0)
 			System.out.println("Cette objet ne peux etre retirer du sac.");
+		if (n.compareTo("Missing") == 0)
+			System.out.println("le sac ne contient pas cette objet.");
 	}
 }
