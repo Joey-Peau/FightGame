@@ -1,6 +1,6 @@
 import java.util.Random;
 
-import Model.Characters.enemy.Warrior;
+import Model.item.ItemLister;
 
 
 public class Principale {
@@ -12,8 +12,9 @@ public class Principale {
 
 		Random r = new Random();
 
+		new ItemLister();
 
-		System.out.println(new Warrior(100).itemLoot());
+
 
 	}
 

@@ -82,4 +82,58 @@ public class ItemLister {
 		listPotions.add(new Potions());
 	}
 
+	/**
+	 * get the listWeap field of ArrayList<Weapons> type
+	 * @return the listWeap - ArrayList<Weapons>
+	 */
+	public static ArrayList<Weapons> getListWeap() {
+		// listWeap getter
+		return listWeap;
+	}
+
+	/**
+	 * Setter for listWeap field with listWeap parameters
+	 * @param listWeap the listWeap to set
+	 */
+	public static void setListWeap(ArrayList<Weapons> listWeap) {
+		// ItemLister.listWeap setter with listWeap parameter
+		ItemLister.listWeap = listWeap;
+	}
+
+	/**
+	 * get the listProtec field of ArrayList<Protection> type
+	 * @return the listProtec - ArrayList<Protection>
+	 */
+	public static ArrayList<Protection> getListProtec() {
+		// listProtec getter
+		return listProtec;
+	}
+
+	/**
+	 * Setter for listProtec field with listProtec parameters
+	 * @param listProtec the listProtec to set
+	 */
+	public static void setListProtec(ArrayList<Protection> listProtec) {
+		// ItemLister.listProtec setter with listProtec parameter
+		ItemLister.listProtec = listProtec;
+	}
+
+	/**
+	 * get the listPotions field of ArrayList<Potions> type
+	 * @return the listPotions - ArrayList<Potions>
+	 */
+	public static ArrayList<Potions> getListPotions() {
+		// listPotions getter
+		return listPotions;
+	}
+
+	/**
+	 * Setter for listPotions field with listPotions parameters
+	 * @param listPotions the listPotions to set
+	 */
+	public static void setListPotions(ArrayList<Potions> listPotions) {
+		// ItemLister.listPotions setter with listPotions parameter
+		ItemLister.listPotions = listPotions;
+	}
+
 }

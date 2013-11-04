@@ -2,6 +2,7 @@ package Model.Characters.player.Bag;
 
 import java.util.ArrayList;
 
+import Model.item.Item;
 import Model.item.Equipment.Equipment;
 import Model.item.Equipment.protection.Protection;
 import Model.item.Equipment.weapons.Weapons;
@@ -16,16 +17,16 @@ import Model.item.potions.Potions;
 public class Bag {
 
 	// size of the bag
-	private int bagSize;
+	private int				   bagSize;
 
 	// free area left in the bag
-	private int freeArea;
+	private int				   freeArea;
 
 	// potions objects
-	private ArrayList<Potions> h;
+	private ArrayList<Potions>	h;
 
 	// Weapons Objects
-	private ArrayList<Weapons> w;
+	private ArrayList<Weapons>	w;
 
 	// protection objects
 	private ArrayList<Protection> s;
@@ -68,35 +69,41 @@ public class Bag {
 				s.add((Protection) a);
 
 			freeArea--;
-		} else {
-			new BagException("Full");
 		}
+		else
+			new BagException("Full");
 	}
 
 	/**
 	 * Remove the object from the bag
 	 * 
 	 * @param a
-	 *            object to remove
+	 *            Item to remove
 	 */
-	public void removeBag(Object a) {
-		if (a instanceof Equipment) {
-			if (((Equipment) a).isCarried()) {
-				new BagException("Carried");
-			} else {
-				if (a instanceof Weapons)
-					w.remove(a);
-				if (a instanceof Protection)
-					s.remove(a);
+	public void removeBag(Item a) {
+		if (h.contains(a) || w.contains(a) || s.contains(a)) {
+			if (a instanceof Equipment) {
+				if (((Equipment) a).isCarried())
+					new BagException("Carried");
+				else {
+					if (a instanceof Weapons)
+						w.remove(a);
+					if (a instanceof Protection)
+						s.remove(a);
+				}
 			}
-		} else if (a instanceof Potions)
-			h.remove(a);
+			else
+				if (a instanceof Potions)
+					h.remove(a);
 
-		freeArea++;
+			freeArea++;
+		}
+		else
+			new BagException("Missing");
 	}
 
 	/**
-	 * Increase the Bag's Size
+	 * Increase the Bag's Size by 5
 	 */
 	public void increaseBagSize() {
 		bagSize += 5;
@@ -106,22 +113,34 @@ public class Bag {
 	/**
 	 * Print all inventory
 	 */
+	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		int i = 0;
 		sb.append("\n\nPotions : \n");
 		for (Potions p : h)
-			sb.append((i++) + " : " + p + "\n");
+			sb.append(i++ + " : " + p + "\n");
 		i = 0;
 		sb.append("\n\nWeapons : \n");
 		for (Weapons p : w)
-			sb.append((i++) + " : " + p + "\n");
+			sb.append(i++ + " : " + p + "\n");
 		i = 0;
 		sb.append("\n\nProtections : \n");
 		for (Protection p : s)
-			sb.append((i++) + " : " + p + "\n");
+			sb.append(i++ + " : " + p + "\n");
 
 		return new String(sb);
+	}
+
+	/**
+	 * 
+	 * set the bag size (infinite for merchant)
+	 * 
+	 * @param bs
+	 *            new size for the bag
+	 */
+	public void setBagSize(int bs) {
+		bagSize = bs;
 	}
 
 }

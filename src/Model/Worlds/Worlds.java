@@ -1,7 +1,6 @@
 package Model.Worlds;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 import Model.Characters.enemy.Enemy;
@@ -14,10 +13,10 @@ public class Worlds {
 
 	// lvl's Boundaries
 	protected int levelInf, levelSup;
-	
+
 	//enemies present in this world
 	protected ArrayList<Enemy> enemies;
-	
+
 
 	/**
 	 * Create the world in witch enemies will be between levelInf and levelSup
@@ -40,14 +39,14 @@ public class Worlds {
 	public int getInf() {
 		return levelInf;
 	}
-/**
- * Maximal enemies level in this world
- * @return world's maximal level
- */
+	/**
+	 * Maximal enemies level in this world
+	 * @return world's maximal level
+	 */
 	public int getSup() {
 		return levelSup;
 	}
-	
+
 	/**
 	 * Getter for the enemies list
 	 * @return enemies in the world
@@ -55,10 +54,15 @@ public class Worlds {
 	public ArrayList<Enemy> getListEnemies(){
 		return enemies;
 	}
-	
+
+	/**
+	 * 
+	 * return the characteristics of each worlds
+	 * @return hm - int[]
+	 */
 	public int[] caractWorld(){
 		int[] hm = new int[]{0,0,0,0,0,0,0,0,0,0};
-		for(Enemy n : enemies){
+		for(Enemy n : enemies)
 			if(n.getLevel()<=10)
 				hm[0]++;
 			else if(n.getLevel()<=20)
@@ -79,10 +83,9 @@ public class Worlds {
 				hm[8]++;
 			else if (n.getLevel() <= 100)
 				hm[9]++;
-		}
-		
+
 		return hm;
-			
+
 	}
 
 }
