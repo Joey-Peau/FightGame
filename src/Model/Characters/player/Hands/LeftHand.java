@@ -48,22 +48,24 @@ public class LeftHand {
 	 */
 	public Object changeWeapon(Object w) {
 		Object ret = w;
-		if (w instanceof Weapons) {
-			if (rh.getCurrentWeapons() instanceof Fist) {
-				if (w instanceof Shield) {
-					new ImpossibleChangementException("Shield");
-				} else {
-					ret = this.w;
-					this.w.setCarried(false);
-					this.w = (Weapons) w;
-					((Weapons) w).setCarried(true);
-				}
-			} else {
-				new ImpossibleChangementException("Already");
-			}
-		} else {
+		if (!w instanceof Weapons) {
 			new ImpossibleChangementException("Wrong Object");
 		}
+	
+		if (!rh.getCurrentWeapons() instanceof Fist) {
+			new ImpossibleChangementException("Already");
+		}
+	
+		if (w instanceof Shield) {
+			new ImpossibleChangementException("Shield");
+		}
+
+
+		ret = this.w;
+		this.w.setCarried(false);
+		this.w = (Weapons) w;
+		((Weapons) w).setCarried(true);
+		
 
 		return ret;
 	}
