@@ -1,98 +1,58 @@
 package Model.Characters.player;
 
-import Model.Characters.AllCharacters;
-import Model.Characters.player.Bag.Bag;
-import Model.item.Equipment.Equipment;
-import Model.item.Equipment.protection.armor.*;
-import Model.item.Equipment.protection.head.*;
-import Model.item.Equipment.protection.legs.*;
+import Model.Characters.Character;
+import Model.Characters.Levelable;
+import Model.Characters.Statable;
 
 /**
  * Player Class
- * 
+ *
  * @author joey
- * 
  */
-public class Player extends AllCharacters {
-	// Player's name
-	String name;
-	// Player's Bag
-	Bag bag;
-	// Player's Money
-	int money;
-	// player's Experience
-	int exp;
-	// player's next Experience
-	int nextExp;
+public class Player extends Character implements Levelable {
 
-	/**
-	 * Will create the new player
-	 */
-	public Player(String n) {
-		super();
-		name = n;
-		bag = new Bag();
-
+	public Player(String name, int level){
+		super(level);
 	}
 
-	/**
-	 * getter for the Player's Bag
-	 * 
-	 * @return the Player's Bag
-	 */
-	public Bag getBag() {
-		return bag;
+	@Override
+	public int calculatedMaxLifePoints() {
+		return 1000;
 	}
 
-	/**
-	 * Getter for the Player's Name
-	 * 
-	 * @return Player's Name
-	 */
-	public String getName() {
-		return name;
+	@Override
+	public int getLevel() {
+		return level;
 	}
 
-	public String toString() {
-		return getName() + "\n" + getHands();
+	@Override
+	public int levelUp() {
+		return 0;
 	}
 
-	/**
-	 * Add money to the player
-	 * 
-	 * @param m
-	 *            money to add/decrease
-	 */
-	public void addMoney(int m) {
-		money += m;
+	@Override
+	public Levelable addExp(int exp) {
+		return null;
 	}
 
-	/**
-	 * Add Experience to the Player and automatically check if upgrade needed
-	 * 
-	 * @param e
-	 *            experience given to the player
-	 */
-	public void addEXP(int e) {
-		exp += e;
-		if (nextLevel() <= 0)
-			addLevel();
+	@Override
+	public int getExp() {
+		return 0;
 	}
 
-	/**
-	 * Tells how many experience is needed for next level
-	 * 
-	 * @return experience before next level
-	 */
-	public int nextLevel() {
-		return nextExp - exp;
+	@Override
+	public int getExpForNextLevel() {
+		return 0;
 	}
 
-	/**
-	 * Add a level to the player
-	 */
-	public void addLevel() {
-		level++;
-	}
+	@Override
+	public Statable initStats() {
+		super.initStats();
 
+		this.setAgility(1);
+		this.setLuck(1);
+		this.setStrength(1);
+
+		return this;
+	}
 }

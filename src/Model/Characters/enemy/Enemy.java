@@ -1,32 +1,17 @@
 package Model.Characters.enemy;
 
-import Model.Characters.AllCharacters;
+import Model.Characters.Character;
+import Model.Characters.Lootable;
 
-public abstract class Enemy extends AllCharacters {
+public abstract class Enemy extends Character implements Lootable {
 
-	public Enemy(int level) {
-
+	public Enemy(int level){
+		super(level);
 	}
 
-	/**
-	 * Getter for the experience offered to the player if defeated
-	 * 
-	 * @return experience for Player
-	 */
-	public abstract int expLoot();
+	@Override
+	public int calculatedMaxLifePoints() {
+		return 100;
+	}
 
-	/**
-	 * Money given by the enemy
-	 * 
-	 * @return enemy money
-	 */
-	public abstract int moneyLoot();
-
-	/**
-	 * Set the different characteristics different for each enemies
-	 * 
-	 * @param level
-	 *            enemy level
-	 */
-	public abstract void setStat(int level);
 }
