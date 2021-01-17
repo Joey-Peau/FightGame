@@ -1,7 +1,5 @@
 package Model.Characters;
 
-import java.util.Random;
-
 /**
  * Super class for all characters
  *
@@ -109,7 +107,6 @@ public abstract class Character implements Fightable, Statable {
 
 	@Override
 	public int realRemoval(int base_lp_to_remove) {
-		Random r = new Random();
 		// https://gamedev.stackexchange.com/a/14314
 
 		//the higher the level, the higher the chance do get quarter damage :
@@ -123,7 +120,7 @@ public abstract class Character implements Fightable, Statable {
 		min_random_multiplier += (1 / (1000 / Math.pow(2, this.getAgility() - 1)));
 
 		int nb_to_remove = Math.max(0, base_lp_to_remove);
-		int damage_reduction = nb_to_remove * r.nextInt(min_random_multiplier - 1) + 1;
+		int damage_reduction = (int) (nb_to_remove * ((Math.random() * (1 - min_random_multiplier)) + min_random_multiplier));
 
 		nb_to_remove -= damage_reduction;
 

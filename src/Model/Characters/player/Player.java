@@ -49,9 +49,9 @@ public class Player extends Character implements Levelable {
 	public Statable initStats() {
 		super.initStats();
 
-		this.setAgility(1);
-		this.setLuck(1);
-		this.setStrength(1);
+		this.setStrength(5);
+		this.setAgility(5);
+		this.setLuck(5);
 
 		return this;
 	}

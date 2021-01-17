@@ -2,7 +2,7 @@ package Model.Characters.enemy;
 
 import Model.Characters.Statable;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Warrior enemy Class
@@ -11,17 +11,26 @@ import java.util.Random;
  */
 public class Warrior extends Enemy {
 
-	public Warrior(int level){
+	final int HIGH_STRENGTH = 10;
+	final int LOW_STRENGTH = 5;
+
+	final int HIGH_AGILITY = 7;
+	final int LOW_AGILITY = 3;
+
+	final int HIGH_LUCK = 1;
+	final int LOW_LUCK = 0;
+
+	public Warrior(int level) {
 		super(level);
 	}
 
 	@Override
 	public Statable initStats() {
-		Random r = new Random();
+		ThreadLocalRandom r = ThreadLocalRandom.current();
 
-		this.setStrength(r.nextInt(10 - 5) + 5);
-		this.setAgility(r.nextInt(7 - 3) + 3);
-		this.setLuck((r.nextInt(1000 - 1) + 1) / 100);
+		this.setStrength(r.nextInt(LOW_STRENGTH, HIGH_STRENGTH + 1));
+		this.setAgility(r.nextInt(LOW_AGILITY, HIGH_AGILITY + 1));
+		this.setLuck(r.nextInt(LOW_LUCK, HIGH_LUCK + 1));
 
 		return this;
 	}
