@@ -1,17 +1,31 @@
 package Controllers;
 
 import Model.Characters.Fightable;
+import tools.CustomEvent;
+import tools.CustomListener;
+import tools.EventBus;
+import tools.FightListener.FightListenerPlayer1;
+import tools.FightListener.FightListenerPlayer2;
 
 public class FightController {
 
 	Fightable player1, player2;
 
+	CustomListener listenerPlayer1, listenerPlayer2;
+
 	public FightController(Fightable player1, Fightable player2) {
 		this.player1 = player1;
 		this.player2 = player2;
+
+		this.listenerPlayer1 = new FightListenerPlayer1();
+		this.listenerPlayer2 = new FightListenerPlayer2();
 	}
 
 	public void fight(boolean player1First) {
+		EventBus.register(this.listenerPlayer1);
+		EventBus.register(this.listenerPlayer2);
+
+
 		int lpToRemove = 0;
 		Fightable firstPlayer, secondPlayer;
 		if (player1First) {
@@ -24,25 +38,35 @@ public class FightController {
 
 		lpToRemove = firstPlayer.getAttackPoints();
 		if (firstPlayer.isCriticalHit()) {
-			System.out.println("CRITICAL HIT to player 2");
+			EventBus.send(CustomEvent.CRITICAL_HIT_PLAYER_ONE);
 			lpToRemove *= 2;
 		}
 		int real_removed;
 		real_removed = secondPlayer.removeLife(lpToRemove);
-		System.out.println("Player 2 -" + real_removed);
+
+		EventBus.send(CustomEvent.ATTACKED_PLAYER_TWO, real_removed);
 
 		if (!secondPlayer.isAlive()) {
-			System.out.println("Player 2 is DEAD");
+			EventBus.send(CustomEvent.DEAD_PLAYER_TWO);
 			return;
 		}
 
 		lpToRemove = secondPlayer.getAttackPoints();
 		if (secondPlayer.isCriticalHit()) {
-			System.out.println("CRITICAL HIT to player 1");
+			EventBus.send(CustomEvent.CRITICAL_HIT_PLAYER_TWO);
 			lpToRemove *= 2;
 		}
+
 		real_removed = firstPlayer.removeLife(lpToRemove);
-		System.out.println("Player 1 -" + real_removed);
+		EventBus.send(CustomEvent.ATTACKED_PLAYER_ONE, real_removed);
+
+		if (!firstPlayer.isAlive()) {
+			EventBus.send(CustomEvent.DEAD_PLAYER_ONE);
+			return;
+		}
+
+		EventBus.unregister(this.listenerPlayer1);
+		EventBus.unregister(this.listenerPlayer2);
 
 	}
 }
