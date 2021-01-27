@@ -2,20 +2,20 @@ package Model.Characters;
 
 public interface Statable {
 
-	int strength = 0, luck = 0, agility = 0;
+    int strength = 0, luck = 0, agility = 0;
 
-	Statable initStats();
+    Statable initStats();
 
-	int getStrength();
+    int getStrength();
 
-	Statable setStrength(int value);
+    Statable setStrength(int value);
 
-	int getLuck();
+    int getLuck();
 
-	Statable setLuck(int value);
+    Statable setLuck(int value);
 
-	int getAgility();
+    int getAgility();
 
-	Statable setAgility(int value);
+    Statable setAgility(int value);
 
 }

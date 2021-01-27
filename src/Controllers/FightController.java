@@ -9,64 +9,61 @@ import tools.FightListener.FightListenerPlayer2;
 
 public class FightController {
 
-	Fightable player1, player2;
+    Fightable player1, player2;
 
-	CustomListener listenerPlayer1, listenerPlayer2;
+    CustomListener listenerPlayer1, listenerPlayer2;
 
-	public FightController(Fightable player1, Fightable player2) {
-		this.player1 = player1;
-		this.player2 = player2;
+    public FightController(Fightable player1, Fightable player2) {
+        this.player1 = player1;
+        this.player2 = player2;
 
-		this.listenerPlayer1 = new FightListenerPlayer1();
-		this.listenerPlayer2 = new FightListenerPlayer2();
-	}
+        this.listenerPlayer1 = new FightListenerPlayer1();
+        this.listenerPlayer2 = new FightListenerPlayer2();
+    }
 
-	public void fight(boolean player1First) {
-		EventBus.register(this.listenerPlayer1);
-		EventBus.register(this.listenerPlayer2);
+    public void fight(boolean player1First) {
+        EventBus.register(this.listenerPlayer1);
+        EventBus.register(this.listenerPlayer2);
 
 
-		int lpToRemove = 0;
-		Fightable firstPlayer, secondPlayer;
-		if (player1First) {
-			firstPlayer = this.player1;
-			secondPlayer = this.player2;
-		} else {
-			firstPlayer = this.player2;
-			secondPlayer = this.player1;
-		}
+        Fightable firstPlayer, secondPlayer;
+        if (player1First) {
+            firstPlayer = this.player1;
+            secondPlayer = this.player2;
+        } else {
+            firstPlayer = this.player2;
+            secondPlayer = this.player1;
+        }
 
-		lpToRemove = firstPlayer.getAttackPoints();
-		if (firstPlayer.isCriticalHit()) {
-			EventBus.send(CustomEvent.CRITICAL_HIT_PLAYER_ONE);
-			lpToRemove *= 2;
-		}
-		int real_removed;
-		real_removed = secondPlayer.removeLife(lpToRemove);
+        boolean isCriticalHit = firstPlayer.isCriticalHit();
+        int real_removed = firstPlayer.attack(secondPlayer, isCriticalHit);
 
-		EventBus.send(CustomEvent.ATTACKED_PLAYER_TWO, real_removed);
+        if (isCriticalHit) {
+            EventBus.send(CustomEvent.CRITICAL_HIT_PLAYER_ONE);
+        }
 
-		if (!secondPlayer.isAlive()) {
-			EventBus.send(CustomEvent.DEAD_PLAYER_TWO);
-			return;
-		}
+        EventBus.send(CustomEvent.ATTACKED_PLAYER_TWO, real_removed);
 
-		lpToRemove = secondPlayer.getAttackPoints();
-		if (secondPlayer.isCriticalHit()) {
-			EventBus.send(CustomEvent.CRITICAL_HIT_PLAYER_TWO);
-			lpToRemove *= 2;
-		}
+        if (!secondPlayer.isAlive()) {
+            EventBus.send(CustomEvent.DEAD_PLAYER_TWO);
+            return;
+        }
 
-		real_removed = firstPlayer.removeLife(lpToRemove);
-		EventBus.send(CustomEvent.ATTACKED_PLAYER_ONE, real_removed);
+        isCriticalHit = secondPlayer.isCriticalHit();
+        real_removed = secondPlayer.attack(firstPlayer, isCriticalHit);
+        if (isCriticalHit) {
+            EventBus.send(CustomEvent.CRITICAL_HIT_PLAYER_TWO);
+        }
 
-		if (!firstPlayer.isAlive()) {
-			EventBus.send(CustomEvent.DEAD_PLAYER_ONE);
-			return;
-		}
+        EventBus.send(CustomEvent.ATTACKED_PLAYER_ONE, real_removed);
 
-		EventBus.unregister(this.listenerPlayer1);
-		EventBus.unregister(this.listenerPlayer2);
+        if (!firstPlayer.isAlive()) {
+            EventBus.send(CustomEvent.DEAD_PLAYER_ONE);
+            return;
+        }
 
-	}
+        EventBus.unregister(this.listenerPlayer1);
+        EventBus.unregister(this.listenerPlayer2);
+
+    }
 }

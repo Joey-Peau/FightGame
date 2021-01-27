@@ -5,13 +5,13 @@ import Model.Characters.Lootable;
 
 public abstract class Enemy extends Character implements Lootable {
 
-	public Enemy(int level){
-		super(level);
-	}
+    public Enemy(int level) {
+        super(level);
+    }
 
-	@Override
-	public int calculatedMaxLifePoints() {
-		return 100;
-	}
+    @Override
+    public int calculatedMaxLifePoints() {
+        return (100 + (int) Math.ceil(Math.random() * 100)) * this.level;
+    }
 
 }

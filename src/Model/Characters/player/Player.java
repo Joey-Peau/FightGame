@@ -11,48 +11,51 @@ import Model.Characters.Statable;
  */
 public class Player extends Character implements Levelable {
 
-	public Player(String name, int level){
-		super(level);
-	}
+    int expPoints;
 
-	@Override
-	public int calculatedMaxLifePoints() {
-		return 1000;
-	}
+    public Player(String name, int level) {
+        super(level);
+    }
 
-	@Override
-	public int getLevel() {
-		return level;
-	}
+    @Override
+    public int calculatedMaxLifePoints() {
+        return 1000;
+    }
 
-	@Override
-	public int levelUp() {
-		return 0;
-	}
+    @Override
+    public int getLevel() {
+        return level;
+    }
 
-	@Override
-	public Levelable addExp(int exp) {
-		return null;
-	}
+    @Override
+    public int levelUp() {
+        return this.level++;
+    }
 
-	@Override
-	public int getExp() {
-		return 0;
-	}
+    @Override
+    public Levelable addExp(int exp) {
+        this.expPoints += exp;
+        return this;
+    }
 
-	@Override
-	public int getExpForNextLevel() {
-		return 0;
-	}
+    @Override
+    public int getExp() {
+        return this.expPoints;
+    }
 
-	@Override
-	public Statable initStats() {
-		super.initStats();
+    @Override
+    public int getExpForNextLevel() {
+        return (int) (1000 * Math.random() * 10 * this.level);
+    }
 
-		this.setStrength(5);
-		this.setAgility(5);
-		this.setLuck(5);
+    @Override
+    public Statable initStats() {
+        super.initStats();
 
-		return this;
-	}
+        this.setStrength(5);
+        this.setAgility(5);
+        this.setLuck(5);
+
+        return this;
+    }
 }

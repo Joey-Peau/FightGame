@@ -2,12 +2,12 @@ package tools;
 
 public abstract class CustomListener {
 
-	String name;
+    String name;
 
-	public CustomListener(String name) {
-		this.name = name;
-	}
+    public CustomListener(String name) {
+        this.name = name;
+    }
 
-	public abstract void listen(CustomEvent e, Object... args);
+    public abstract void listen(CustomEvent e, Object... args);
 
 }
